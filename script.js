@@ -140,8 +140,8 @@ if (contactForm) {
                 },
                 body: JSON.stringify({
                     access_key: 'abeb3949-1aa7-4ae5-8a35-848400d9697f',
-                    subject: 'Parts Inquiry - DriveCore',
-                    from_name: 'DriveCore Website',
+                    subject: 'Parts Inquiry - MaxVoltix',
+                    from_name: 'MaxVoltix Website',
                     ...data
                 })
             });
