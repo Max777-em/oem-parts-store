@@ -223,9 +223,10 @@ body {
    HERO SECTION
    =========================== */
 .hero {
-    background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-    padding: 80px 0 100px;
     position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
     overflow: hidden;
 }
 
@@ -235,35 +236,76 @@ body {
     left: 0;
     right: 0;
     bottom: 0;
-    background-image: url('https://picsum.photos/seed/carbg/1920/800');
-    background-size: cover;
-    background-position: center;
-    opacity: 0.1;
+    z-index: 0;
+}
+
+.hero-bg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center bottom;
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+        to bottom,
+        rgba(15, 15, 26, 0.85) 0%,
+        rgba(15, 15, 26, 0.7) 40%,
+        rgba(15, 15, 26, 0.8) 100%
+    );
+    z-index: 1;
+}
+
+.hero .container {
+    position: relative;
+    z-index: 2;
 }
 
 .hero-content {
-    position: relative;
     text-align: center;
-    max-width: 900px;
+    max-width: 950px;
     margin: 0 auto;
+    padding: 60px 0;
+}
+
+.hero-badge {
+    display: inline-block;
+    padding: 10px 24px;
+    background: rgba(233, 69, 96, 0.2);
+    border: 1px solid var(--accent);
+    color: var(--accent);
+    border-radius: 100px;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 24px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
 }
 
 .hero-title {
-    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
     font-weight: 900;
     color: white;
-    margin-bottom: 16px;
+    margin-bottom: 20px;
     text-transform: uppercase;
     letter-spacing: -0.02em;
+    line-height: 1.1;
+    text-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
 }
 
 .hero-subtitle {
-    font-size: 1.25rem;
+    font-size: 1.35rem;
     color: rgba(255, 255, 255, 0.9);
     margin-bottom: 40px;
     max-width: 700px;
     margin-left: auto;
     margin-right: auto;
+    line-height: 1.6;
 }
 
 /* Search Box */
@@ -321,21 +363,52 @@ body {
 .hero-features {
     display: flex;
     justify-content: center;
-    gap: 48px;
+    gap: 32px;
     flex-wrap: wrap;
+    margin-bottom: 40px;
 }
 
 .hero-feature {
     display: flex;
     align-items: center;
     gap: 10px;
-    color: rgba(255, 255, 255, 0.9);
+    color: rgba(255, 255, 255, 0.95);
     font-size: 15px;
     font-weight: 500;
+    padding: 12px 20px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .hero-feature svg {
     color: var(--accent);
+}
+
+/* Hero CTA Buttons */
+.hero-cta {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.hero-cta .btn {
+    padding: 18px 40px;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.hero-cta .btn-secondary {
+    background: transparent;
+    border: 2px solid white;
+    color: white;
+}
+
+.hero-cta .btn-secondary:hover {
+    background: white;
+    color: var(--primary);
 }
 
 /* ===========================
@@ -1019,11 +1092,20 @@ body {
     }
 
     .hero {
-        padding: 60px 0 80px;
+        min-height: auto;
+        padding: 120px 0 60px;
+    }
+
+    .hero-content {
+        padding: 40px 0;
     }
 
     .hero-title {
         font-size: 2rem;
+    }
+
+    .hero-subtitle {
+        font-size: 1.1rem;
     }
 
     .search-box {
@@ -1036,7 +1118,17 @@ body {
     }
 
     .hero-features {
-        gap: 24px;
+        gap: 12px;
+    }
+
+    .hero-feature {
+        padding: 10px 16px;
+        font-size: 13px;
+    }
+
+    .hero-cta .btn {
+        width: 100%;
+        padding: 16px 32px;
     }
 
     .brands-grid {
