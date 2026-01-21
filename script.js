@@ -106,7 +106,7 @@ document.querySelectorAll('.part-btn').forEach(btn => {
     });
 });
 
-// Contact Form Handling
+// Contact Form Handling - Email Only
 const contactForm = document.getElementById('contact-form');
 
 if (contactForm) {
@@ -140,8 +140,8 @@ if (contactForm) {
                 },
                 body: JSON.stringify({
                     access_key: 'abeb3949-1aa7-4ae5-8a35-848400d9697f',
-                    subject: 'Parts Inquiry - MaxVoltix',
-                    from_name: 'MaxVoltix Website',
+                    subject: 'Parts Inquiry - MotyraGear',
+                    from_name: 'MotyraGear Website',
                     ...data
                 })
             });
@@ -149,17 +149,6 @@ if (contactForm) {
             const result = await response.json();
 
             if (result.success) {
-                // Create WhatsApp message
-                const whatsappMessage = `🚗 *New Parts Inquiry*%0A%0A` +
-                    `*Name:* ${data.name}%0A` +
-                    `*Phone:* ${data.phone}%0A` +
-                    `*Email:* ${data.email}%0A` +
-                    `*Vehicle:* ${data.vehicle_brand || 'Not specified'} ${data.vehicle_year || ''}%0A` +
-                    `*Message:* ${data.message || 'No message'}`;
-
-                const whatsappNumber = '16467509028';
-                window.open(`https://wa.me/${whatsappNumber}?text=${whatsappMessage}`, '_blank');
-
                 alert('Thank you for your inquiry! We will contact you shortly with part availability and pricing.');
                 contactForm.reset();
             } else {
@@ -167,19 +156,7 @@ if (contactForm) {
             }
         } catch (error) {
             console.error('Error:', error);
-
-            // Fallback to WhatsApp
-            const whatsappMessage = `🚗 *New Parts Inquiry*%0A%0A` +
-                `*Name:* ${data.name}%0A` +
-                `*Phone:* ${data.phone}%0A` +
-                `*Email:* ${data.email}%0A` +
-                `*Vehicle:* ${data.vehicle_brand || 'Not specified'} ${data.vehicle_year || ''}%0A` +
-                `*Message:* ${data.message || 'No message'}`;
-
-            const whatsappNumber = '16467509028';
-            window.open(`https://wa.me/${whatsappNumber}?text=${whatsappMessage}`, '_blank');
-
-            alert('Please complete your inquiry via WhatsApp.');
+            alert('Sorry, there was an error sending your message. Please try again.');
         }
 
         submitBtn.textContent = originalText;
